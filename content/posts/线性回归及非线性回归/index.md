@@ -16,14 +16,15 @@ tags:
 线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系
 
 
-### 代价函数（损失函数）（Cost function）
+## 代价函数（损失函数）（Cost function）
 - 最小二乘法
-- 真实值$y$,预测值$h_\theta$,则误差平方为$(y-h_\theta(x))^2$.
+- 真实值\\(y\\),预测值\\(h_\theta\\),则误差平方为\\((y-h_\theta(x))^2\\).
 - 找到合适的参数，使得误差平方和：
-$$
-对于线性的：
-h_\theta(x)=\theta_0+\theta_1x
 
+对于线性的：
+$$
+h_\theta(x)=\theta_0+\theta_1x
+\\\\
 J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2
 $$
 最小
@@ -32,35 +33,35 @@ $$
 $$
 r_{xy}=\dfrac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2\sum(Y_i-\overline{Y})^2}}
 $$
-其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\overline{X}$表示真实值的横坐标的平均值；$\overline{Y}$表示真实值的纵坐标的平均值。
-- 相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。
-- 总平方和（SST）：$\textstyle\sum_{i=1}^n(y_i-\overline{y})^2$
-- 回归平方和（SSR）：$\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2$
-- 残差平方和（SSE）：$\textstyle\sum_{i=1}^n(y_i-\hat{y})^2$
-- 它们三者的关系是：$SST=SSR+SSE$
-- 决定系数：$R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$
+其中\\(X_i\\)表示真实值的横坐标；\\(Y_i\\)表示真实值纵横坐标；\\(\overline{X}\\)表示真实值的横坐标的平均值；\\(\overline{Y}\\)表示真实值的纵坐标的平均值。
+- 相关系数\\(R^2\\)是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。
+- 总平方和（SST）：\\(\textstyle\sum_{i=1}^n(y_i-\overline{y})^2\\)
+- 回归平方和（SSR）：\\(\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2\\)
+- 残差平方和（SSE）：\\(\textstyle\sum_{i=1}^n(y_i-\hat{y})^2\\)
+- 它们三者的关系是：\\(SST=SSR+SSE\\)
+- 决定系数：\\(R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}\\)
 
-### 一、梯度下降
+## 一、梯度下降
 需要做一个迭代：
 $$
 \theta_j:=\theta_j-\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1),j=0,1
 $$
-其中$\alpha$为学习率;$:=$为赋值符，将右边赋值给左边
+其中\\(\alpha\\)为学习率；\\(:=\\)为赋值符，将右边赋值给左边
 
 这个迭代公式在更新的时候必须同步更新，即：
 $$
 temp0:=\theta_0-\alpha\dfrac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)
-
+\\\\
 temp1:=\theta_1-\alpha\dfrac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)
-
+\\\\
 \theta_0:=temp0
-
+\\\\
 \theta_1:=temp1
 $$
 学习率不能太小也不能太大。太小计算耗时，太大就会发生震荡。
 
-#### 1、用梯度下降法来求解线性回归
-上面提到的$\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)$`拆开来是这样的：
+### 1、用梯度下降法来求解线性回归
+上面提到的\\(\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\\)拆开来是这样的：
 $$
 j=0:\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)=\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})
 $$
@@ -71,9 +72,9 @@ $$
 #### 实战1.1 一元线性回归
 **语言**：Python
 
-一、使用numpy实现**：**
+**一、使用numpy实现:**
 
-第三方库**：numpy、matplotlib。
+**第三方库**：numpy、matplotlib。
 
 ```python
 import numpy as np
@@ -167,21 +168,21 @@ plt.show()
 ```
 
 #### 多元线性回归
-当`$y$`的影响因素不是唯一时，采用多元线性回归模型。
+当\\(y\\)的影响因素不是唯一时，采用多元线性回归模型。
 
 **多特征**
 $$
 h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\dots+\theta_nx_n
 $$
-那么在这里的话有多少个特征就会有多少个x。
+那么在这里的话有多少个特征就会有多少个\\(x\\)。
 
 **多元线性回归的梯度下降**
 $$
 \theta_j:=\theta_j-\alpha\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)}) x_j^{(i)}
-
+\\\\
 (j=0,\dots,n)
 $$
-#### 2、梯度下降法解决多元线性回归
+### 2、梯度下降法解决多元线性回归
 **实战2.1：利用numpy使用梯度下降法**
 ```python
 import numpy as np
@@ -311,7 +312,7 @@ ax.set_zlabel('Time')
 plt.show()  
 #------------------------------画3D图
 ```
-#### 3、多项式回归
+### 3、多项式回归
 多项式回归，回归函数是回归变量多项式的回归。多项式回归模型是线性回归模型的一种，此时回归函数关于回归系数是线性的。由于任一函数都可以用多项式逼近，因此多项式回归有着广泛应用。
 $$
 y=\theta_0+\theta_1x+\theta_2x+\theta_3x+\dots+\theta_nx
@@ -359,31 +360,36 @@ plt.ylabel('Salary')
 plt.show()
 #--------------------------------画出使用多项式回归的结果图
 ```
-### 二、标准方程法
+## 二、标准方程法
 标准方程法就是令式子的代价函数的偏导都等于0时所求得的解向量就是使代价函数最小的解。
 $$
 令\dfrac{\partial}{\partial\theta_j}J(\theta)=\dots=0
-
+\\\\
 求解:\theta_0,\theta_1,\dots,\theta_n
 $$
-我们知道，在梯度下降法中，式子的代价函数为$J(\theta_0,\theta_1,\dots,\theta_n)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2$
-当我们有一组数据，我们把自变量用矩阵`$X$`表示，自变量用矩阵`$y$`表示，需要求解的令代价函数等于零的解用矩阵`w`表示。例如：
+我们知道，在梯度下降法中，式子的代价函数为\\(J(\theta_0,\theta_1,\dots,\theta_n)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2\\)
+当我们有一组数据，我们把自变量用矩阵\\(X\\)表示，自变量用矩阵\\(y\\)表示，需要求解的令代价函数等于零的解用矩阵\\(w\\)表示。例如：
 $$
-X=\begin{bmatrix}x_{0,0}&x_{0,1}&x_{0,2}&x_{0,3}&x_{0,4}\\x_{1,0}&x_{1,1}&x_{1,2}&x_{1,3}&x_{1,4}\\x_{2,0}&x_{2,1}&x_{2,2}&x_{2,3}&x_{2,4}\\x_{3,0}&x_{3,1}&x_{3,2}&x_{3,3}&x_{3,4}\end{bmatrix} w=\begin{bmatrix}w_0\\w_1\\w_2\\w_3\\w_4 \end{bmatrix} y=\begin{bmatrix}y_0\\y_1\\y_2\\y_3\\y_4 \end{bmatrix}
-
+X=\begin{bmatrix}x_{0,0}&x_{0,1}&x_{0,2}&x_{0,3}&x_{0,4} \\\\ 
+x_{1,0}&x_{1,1}&x_{1,2}&x_{1,3}&x_{1,4} \\\\
+x_{2,0}&x_{2,1}&x_{2,2}&x_{2,3}&x_{2,4} \\\\
+x_{3,0}&x_{3,1}&x_{3,2}&x_{3,3}&x_{3,4}\end{bmatrix}
+\\\\
+w=\begin{bmatrix}w_0 \\\\ w_1 \\\\ w_2 \\\\ w_3 \\\\ w_4 \end{bmatrix}
+\\\\
+y=\begin{bmatrix}y_0 \\\\ y_1 \\\\ y_2 \\\\ y_3 \\\\ y_4 \end{bmatrix}
+\\\\
 \displaystyle\sum_{i=1}^m(h_w(x^i)-y_i)^2=(y-Xw)^T(y-Xw)
 $$
-#### 这里涉及到矩阵求导
+### 这里涉及到矩阵求导
 **分子布局：** 分子为列向量或者分母为行向量 
 
-**分母布局：**分子为行向量或者分母为列向量
+**分母布局：** 分子为行向量或者分母为列向量
 $$
 \dfrac{\partial(y-Xw)^T(y-Xw)}{\partial w}
-$$
-$$
+\\\\
 \dfrac{\partial(y^Ty-y^TXw-w^TX^Ty+w^TX^TXw)}{\partial w}
-$$
-$$
+\\\\
 \dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}
 $$
 **矩阵的求导百度查表**
@@ -391,41 +397,34 @@ $$
 在这里我们查表后可以求得：
 $$
 \dfrac{\partial y^Ty}{\partial w}=0
-$$
-$$
+\\\\
 \dfrac{\partial y^TXw}{\partial w}=X^Ty
-$$
-$$
+\\\\
 \dfrac{\partial w^TX^Ty}{\partial w}=\dfrac{\partial(w^TX^Ty)^T}{\partial w}=\dfrac{\partial y^TXw}{\partial w}=X^Ty
-$$
-$$
+\\\\
 \dfrac{\partial w^TX^TXw}{\partial w}=2X^TXw
 $$
 那么：
 $$
 \dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}=0-X^Ty-X^Ty+2X^TXw
-$$
-$$
+\\\\
 -2X^Ty+2X^TXw=0
-$$
-$$
+\\\\
 X^TXw=X^Ty
-$$
-$$
+\\\\
 (X^TX)^{-1}X^TXw=(X^TX)^{-1}X^Ty
-$$
-$$
+\\\\
 w=(X^TX)^{-}X^Ty
 $$
 **矩阵不可逆的情况**
 1、线性相关的特征(多重共线性)。
-例如:$x_1$为房子的面积,单位是平方英尺
-$x_2$为房子的面积,单位是平方米
+例如:\\(x_1\\)为房子的面积,单位是平方英尺
+\\(x_2\\)为房子的面积,单位是平方米
 预测房价
-1平方英尺$≈0.0929$平方米
+1平方英尺\\(≈0.0929\\)平方米
 2、特征数据太多(样本数m≤特征数量n )
 
-#### 梯度下降法和标准方程法的优缺点对比
+### 梯度下降法和标准方程法的优缺点对比
 方程类型|优点|缺点
 --|--|--
 梯度下降法|当特征值非常多的时候也可以很好的工作|需要选择合适的学习率<br>需要迭代很多个周期<br>只能得到最优解的近似值
@@ -471,35 +470,35 @@ plt.plot(x_data, y_data, 'b.')
 plt.plot(x_test, y_test, 'r')
 plt.show()
 ```
-### 三、特征缩放
-当数据中的特征的值相差较大时将不利于我们拟合以及作图。例如$x_1=房子的面积（1000000cm^2-2000000cm^2)$
-$x_2=房间的数量（1-5）$
-#### 1、数据归一化
+## 三、特征缩放
+当数据中的特征的值相差较大时将不利于我们拟合以及作图。例如\\(x_1=房子的面积（1000000cm^2-2000000cm^2)\\)
+\\(x_2=房间的数量（1-5）\\)
+### 1、数据归一化
 数据归一化就是把数据的取值范围处为0-1或者-1-1之间
- 任意数据转化为0-1之间：$newValue=(oldValue-min)/(max-min)$
-  任意数据转化为-1-1之间：$newValue=((oldValue-min)/(max-min)-0.5)*2$
-#### 2、均值标准化
-$newValue=(oldValue-u)/s$<br>x为特诊数据，u为数据的平均值，s为数据的方差
-### 四、交叉验证法
-当数据中的记录数量本身不是很多时，如果将数据集按原来的方式划分成训练集和测试集时，就会降低我们训练的效果。这时我们可以将数据划分成n等份（一般划分为10份）然后需要循环n次，每一次循环都取不一样的一份为测试机，剩下的全部为训练集，这样每执行一次循环都会得到一个误差值E，那么最后我们所有误差求和后在求平均值就可以得到较好的误差的值$E=\dfrac{1}{n}\displaystyle\sum_{i=1}^nE_i$
-### 五、过拟合及正则化
+ 任意数据转化为0-1之间：\\(newValue=(oldValue-min)/(max-min)\\)
+  任意数据转化为-1-1之间：\\(newValue=((oldValue-min)/(max-min)-0.5)*2\\)
+### 2、均值标准化
+\\(newValue=(oldValue-u)/s\\)<br>x为特诊数据，u为数据的平均值，s为数据的方差
+## 四、交叉验证法
+当数据中的记录数量本身不是很多时，如果将数据集按原来的方式划分成训练集和测试集时，就会降低我们训练的效果。这时我们可以将数据划分成n等份（一般划分为10份）然后需要循环n次，每一次循环都取不一样的一份为测试机，剩下的全部为训练集，这样每执行一次循环都会得到一个误差值E，那么最后我们所有误差求和后在求平均值就可以得到较好的误差的值\\(E=\dfrac{1}{n}\displaystyle\sum_{i=1}^nE_i\\)
+## 五、过拟合及正则化
 拟合情况一般可以分为三种：欠拟合、正确拟合和过拟合。
 **欠拟合**：就是拟合程度不够导致模型在训练集和测试集中都表现较差。
 **正确拟合**：模型拟合程度高，在训练集和测试集里的表现都很好
 **过拟合**：模型的拟合程度太极端，导致模型在训练集中的表现非常完美，但是在测试集中往往会出现很多误差
-#### 防止过拟合的措施
+### 防止过拟合的措施
 1.减少特征
 2.增加数据量
 3.正则化
-#### 正则化
-正则化代价函数与普通的代价函数差不多，唯一的不同就是最后会加一项$\lambda\displaystyle\sum_{j=1}^n\theta_j^2$或则$\lambda\displaystyle\sum_{j=1}^n\vert\theta_j\vert$。前者叫L2正则化，后者叫L1正则化。
-### 六、岭回归
-在前面标准方程法中求得的权值的表达式是：$w=(X^TX)^{-}X^Ty$。如果数据的特征比样本点还多, 数据特征n,样本个数m，如果n> m,则计算$(X^TX)^{-1}$时会出错。因为$(X^TX)$不是满秩矩阵，所以不可逆。<br>
+### 正则化
+正则化代价函数与普通的代价函数差不多，唯一的不同就是最后会加一项\\(\lambda\displaystyle\sum_{j=1}^n\theta_j^2\\)或则\\(\lambda\displaystyle\sum_{j=1}^n\vert\theta_j\vert\\)。前者叫L2正则化，后者叫L1正则化。
+## 六、岭回归
+在前面标准方程法中求得的权值的表达式是：\\(w=(X^TX)^{-}X^Ty\\)。如果数据的特征比样本点还多, 数据特征n,样本个数m，如果n> m,则计算\\((X^TX)^{-1}\\)时会出错。因为\\((X^TX)\\)不是满秩矩阵，所以不可逆。<br>
 为了解决这个问题,统计学家引入了岭回归的概念。
 $$
 w=(X^T+\lambda I)^{-1}X^Ty
 $$
-$\lambda$`为岭系数, $I$为单位矩阵(对角线.上全为1 ,其他元素全为0)
+\\(\lambda\\)为岭系数, \\(I\\)为单位矩阵(对角线.上全为1 ,其他元素全为0)
 岭回归的代价函数是之前谈到的L2正则化。
 $$
 J(\theta)=\dfrac{1}{2}\displaystyle\sum_{i=1}^n(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{i}^n\theta_i^2
@@ -507,10 +506,9 @@ $$
 岭回归最早是用来处理特征数多于样本的情况,现在也
 用于在估计中加入偏差,从而得到更好的估计。同时也
 可以解决多重共线性的问题。岭回归是一种有偏估计。
-**岭回归代价函数：**$J(\theta)=\dfrac{1}{2m}\left[\displaystyle\sum_{i=1}^m(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{j}^n\theta_j^2\right]$
-**线性回归标准方程法：**$w=(X^TX)^{-}X^Ty$
-**岭回归求解：**$w=(X^T+\lambda I)^{-1}X^Ty$
-$\lambda为岭系数$
-在选择$\lambda$`的值的时候，需要考查下面两个问题使得:
+**岭回归代价函数：** \\(J(\theta)=\dfrac{1}{2m}\left[\displaystyle\sum_{i=1}^m(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{j}^n\theta_j^2\right]\\)
+**线性回归标准方程法：** \\(w=(X^TX)^{-}X^Ty\\)
+**岭回归求解：** \\(w=(X^T+\lambda I)^{-1}X^Ty.\lambda为岭系数\\)
+在选择\\(\lambda\\)的值的时候，需要考查下面两个问题使得:
 1.各回归系数的岭估计基本稳定。
 2.残差平方和增大不太多。
