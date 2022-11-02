@@ -14,6 +14,7 @@ tags:
 ---
 Hugo是Go编写的静态网站生成器，速度快,易用，可配置。Hugo 有一个内容和模板目录，把他们渲染到完全的HTML网站。Hugo非常适合博客，文档等等网站的生成。Hugo依赖于Markdown文件，元数据字体。用户可以从任意的目录中运行 Hugo，支持共享主机和其他系统。
 
+
 ### 一、安装Hugo（windows）
 - Github下载Hugo的发行版<a>https://github.com/gohugoio/hugo/releases</a>
 - 本人推荐下载extended版的
@@ -72,6 +73,7 @@ path = "github.com/nunocoracao/blowfish/v2"
 #### 4、其他更多参数配置
 更多的参数配置参考主题详细文档：<a>https://nunocoracao.github.io/blowfish/docs/configuration/</a>
 ### 四、发布文章
+#### 1、文章格式
 - 假如你菜单配置的Posts指向的是`posts`，那么你需要在content文件夹下再创建一个posts文件夹。
 - 每个文章还需要创建单独的文件夹，用来存放markdown文件和图片等静态资源，加入你开启了文章缩略图，那么每个文章的markdown文件命名就都得是`index.md`而对应的缩略图呢就得在同一目录下命名为`featured.png`或`featured.jpg`。像这样：
 ```
@@ -102,3 +104,13 @@ tags:
 ---
 ```
 `date: 2022-10-25T21:25:00+08:00`时间格式不要搞错
+
+#### 2、发布到github
+- 博客项目打包：博客目录下执行`hugo -D`命令，此时可以发现`public`目录下多了很多东西
+{{< figure src="QQ截图20221102204823.png" alt="QQ截图20221102204823" >}}
+- 创建一个以`.github.io`为后缀的github仓库
+{{< figure src="QQ截图20221102204943.png" alt="QQQ截图20221102204943" >}}
+- 将public目录下的内容提交到这个新的`.github.io`仓库
+{{< figure src="QQ截图20221102205805.png" alt="QQ截图20221102205805" >}}
+- 访问`https://仓库名.github.io/`
+{{< figure src="QQ截图20221102205112.png" alt="QQ截图20221102205112" >}}

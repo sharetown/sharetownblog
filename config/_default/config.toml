@@ -3,12 +3,12 @@
 # https://nunocoracao.github.io/blowfish/docs/getting-started/
 
 # theme = "blowfish"
-# baseURL = "https://your_domain.com/"
+baseURL = "https://sharetown.github.io/"
 defaultContentLanguage = "zh-cn"
 
 enableRobotsTXT = true
 paginate = 20
-summaryLength = 30
+summaryLength = 2
 
 buildDrafts = false
 buildFuture = false
